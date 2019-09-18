@@ -16,5 +16,6 @@ Public Class HttpRedirServerRequestContextHandler
 
     Public Overrides Sub GetResponse()
         Context.Response.Redirect(Me.RedirBaseUrl & Context.Request.RawUrl)
+        Context.Response.StatusCode = 301
     End Sub
 End Class
