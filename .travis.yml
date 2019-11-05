@@ -1,0 +1,12 @@
+language: csharp
+solution: TinyRedirectServer.sln
+
+#before_install:
+#  - nuget install NUnit.Runners -Version 3.10.0 -OutputDirectory testrunner
+
+install:
+  - nuget restore TinyRedirectServer.sln
+
+script:
+  - msbuild /p:Configuration=Release /p:Platform="Any CPU" /p:PostBuildEvent="" TinyRedirectServer.sln
+#  - mono ./testrunner/NUnit.ConsoleRunner.3.10.0/tools/nunit3-console.exe ./CompuMaster.Test.xxxx/bin/CompuMaster.Test.xxxx.dll
