@@ -19,7 +19,7 @@
 	<PropertyGroup>
 		<Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
 		<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-		<ProjectGuid>{C4FAD001-55CF-4AE4-A105-ED9CC9E1473B}</ProjectGuid>
+		<ProjectGuid>{8E5448F8-484E-43D5-8638-1C35F44EB9B7}</ProjectGuid>
 		<OutputType>Library</OutputType>
 		<AppDesignerFolder>Properties</AppDesignerFolder>
 		<RootNamespace>CompuMaster.Web</RootNamespace>
@@ -64,6 +64,6 @@
 		<Reference Include="System.Data.DataSetExtensions" />
 		<Reference Include="Microsoft.CSharp" />
 		<Reference Include="System.Net.Http" />
-		<Reference Include="System.Security.Cryptography.X509Certificates"/>
+		<Reference Include="System.Security.Cryptography.X509Certificates" />
 	</ItemGroup>
 </Project>
