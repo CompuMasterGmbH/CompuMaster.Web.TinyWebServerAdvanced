@@ -20,7 +20,7 @@ namespace CompuMaster.Web.TinyWebServerAdvanced
 
         public X509Certificate2 MakeSelfSignedWebserverCert(string[] ipAddresses, string[] dnsNames)
         {
-            var rsa = RSA.Create(2048); // generate asymmetric key pair
+            var rsa = RSA.Create("2048"); // generate asymmetric key pair
             var req = new CertificateRequest(IssuerDistinguishedName, rsa, HashAlgorithmName.SHA256, RSASignaturePadding.Pkcs1);
             req.CertificateExtensions.Add(
                 new X509KeyUsageExtension(
@@ -34,7 +34,7 @@ namespace CompuMaster.Web.TinyWebServerAdvanced
                     },
                     false));
             
-            var altNames = new System.Security.Cryptography.X509Certificates.SubjectAlternativeNameBuilder();
+            var altNames = new SubjectAlternativeNameBuilder();
             foreach (string ipAddress in ipAddresses)
                 altNames.AddIpAddress(IPAddress.Parse(ipAddress));
             foreach (string dnsName in dnsNames)
