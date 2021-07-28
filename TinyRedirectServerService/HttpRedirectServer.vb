@@ -25,7 +25,16 @@ Public Class HttpRedirectServer
     '    End Function
 
     Public Property RedirectUrl As String
-    Public Property Prefixes As String()
+    Public ReadOnly Property Prefixes As String()
+        Get
+            If ws Is Nothing Then
+                Return Nothing
+            Else
+                Return ws.Prefixes.ToArray
+            End If
+        End Get
+    End Property
+
 
     Dim ws As CompuMaster.Web.TinyWebServerAdvanced.WebServer
 
@@ -38,8 +47,7 @@ Public Class HttpRedirectServer
         If Me.RedirectUrl = "" Then Throw New Exception("Redirection target url required before start")
         'Dim ws As New CompuMaster.Web.TinyWebServerAdvanced.WebServer(AddressOf Me.RequestHandlerForContent, AddressOf Me.RequestHandlerForResponseHeaders, Url)
         Dim RequestHandlerFactory As New HttpRedirServerRequestContextHandlerFactory(Me.RedirectUrl)
-        Dim ws As New CompuMaster.Web.TinyWebServerAdvanced.WebServer(RequestHandlerFactory, urls)
-        Me.Prefixes = ws.Prefixes.ToArray
+        ws = New CompuMaster.Web.TinyWebServerAdvanced.WebServer(RequestHandlerFactory, urls)
         ws.Run()
     End Sub
 

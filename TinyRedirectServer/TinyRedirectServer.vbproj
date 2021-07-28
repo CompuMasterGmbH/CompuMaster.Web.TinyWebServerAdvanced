@@ -14,7 +14,7 @@
 		<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
 		<ProjectGuid>{344F7ABD-E230-470C-A5EC-04D68AA75B48}</ProjectGuid>
 		<OutputType>WinExe</OutputType>
-		<StartupObject>CompuMaster.Web.TinyRedirectServer.My.MyApplication</StartupObject>
+		<StartupObject>CompuMaster.Web.TinyRedirectServer.MainForm</StartupObject>
 		<RootNamespace>CompuMaster.Web.TinyRedirectServer</RootNamespace>
 		<AssemblyName>TinyRedirectServer</AssemblyName>
 		<FileAlignment>512</FileAlignment>
@@ -48,6 +48,7 @@
 	</PropertyGroup>
 	<PropertyGroup>
 		<OptionStrict>Off</OptionStrict>
+		<ApplicationIcon>favicon.ico</ApplicationIcon>
 	</PropertyGroup>
   <ItemGroup>
     <Import Include="System.Data" />
@@ -70,5 +71,8 @@
 	<ItemGroup Condition="'$(TargetFramework)' == 'net48'">
 		<Reference Include="System.Data.DataSetExtensions" />
 		<Reference Include="System.Net.Http" />
+	</ItemGroup>
+	<ItemGroup>
+	  <Folder Include="My Project\" />
 	</ItemGroup>
 </Project>
