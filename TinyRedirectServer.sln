@@ -7,22 +7,27 @@ Project("{778DAE3C-4631-46EA-AA77-85C1314464D9}") = "TinyRedirectServerService",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TinyWebServerAdvanced", "TinyWebServerAdvanced\TinyWebServerAdvanced.csproj", "{8E5448F8-484E-43D5-8638-1C35F44EB9B7}"
 EndProject
-Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "TinyRedirectServer", "TinyRedirectServer\TinyRedirectServer.vbproj", "{344F7ABD-E230-470C-A5EC-04D68AA75B48}"
+Project("{778DAE3C-4631-46EA-AA77-85C1314464D9}") = "TinyRedirectServer", "TinyRedirectServer\TinyRedirectServer.vbproj", "{344F7ABD-E230-470C-A5EC-04D68AA75B48}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		CI_CD|Any CPU = CI_CD|Any CPU
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6669BEB0-78B8-4EA1-808E-953D3989028A}.CI_CD|Any CPU.ActiveCfg = CI_CD|Any CPU
 		{6669BEB0-78B8-4EA1-808E-953D3989028A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{6669BEB0-78B8-4EA1-808E-953D3989028A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6669BEB0-78B8-4EA1-808E-953D3989028A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6669BEB0-78B8-4EA1-808E-953D3989028A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8E5448F8-484E-43D5-8638-1C35F44EB9B7}.CI_CD|Any CPU.ActiveCfg = CI_CD|Any CPU
+		{8E5448F8-484E-43D5-8638-1C35F44EB9B7}.CI_CD|Any CPU.Build.0 = CI_CD|Any CPU
 		{8E5448F8-484E-43D5-8638-1C35F44EB9B7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{8E5448F8-484E-43D5-8638-1C35F44EB9B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8E5448F8-484E-43D5-8638-1C35F44EB9B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8E5448F8-484E-43D5-8638-1C35F44EB9B7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{344F7ABD-E230-470C-A5EC-04D68AA75B48}.CI_CD|Any CPU.ActiveCfg = CI_CD|Any CPU
 		{344F7ABD-E230-470C-A5EC-04D68AA75B48}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{344F7ABD-E230-470C-A5EC-04D68AA75B48}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{344F7ABD-E230-470C-A5EC-04D68AA75B48}.Release|Any CPU.ActiveCfg = Release|Any CPU

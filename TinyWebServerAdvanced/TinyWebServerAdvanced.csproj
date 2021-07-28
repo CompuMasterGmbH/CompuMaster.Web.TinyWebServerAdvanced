@@ -14,7 +14,7 @@
 		<RepositoryUrl>https://github.com/CompuMasterGmbH/CompuMaster.Web.TinyWebServerAdvanced.git</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
 		<PackageTags> CompuMaster TinyWebServer WebServer Server Web </PackageTags>
-		<Configurations>Debug;Release</Configurations>
+		<Configurations>Debug;Release;CI_CD</Configurations>
 	</PropertyGroup>
 	<PropertyGroup>
 		<Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -36,6 +36,15 @@
 		<DefineConstants>TRACE;DEBUG</DefineConstants>
 		<ErrorReport>prompt</ErrorReport>
 		<WarningLevel>4</WarningLevel>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='CI_CD|AnyCPU'">
+	  <DebugSymbols>true</DebugSymbols>
+	  <DebugType>full</DebugType>
+	  <Optimize>false</Optimize>
+	  <OutputPath>bin\Debug\</OutputPath>
+	  <DefineConstants>TRACE;DEBUG</DefineConstants>
+	  <ErrorReport>prompt</ErrorReport>
+	  <WarningLevel>4</WarningLevel>
 	</PropertyGroup>
 	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
 		<DebugType>pdbonly</DebugType>
