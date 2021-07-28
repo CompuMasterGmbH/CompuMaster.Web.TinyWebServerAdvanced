@@ -20,7 +20,9 @@ namespace CompuMaster.Web.TinyWebServerAdvanced
     public class WebServer
     {
         private HttpListener _listener;
+#if NET_FRAMEWORK 
         private CompuMaster.Web.TinyWebServerAdvanced.TemporaryBoundSslCertificate _tempSslCertificate;
+#endif
         private readonly HttpRequestHandlerFactory _requestHandlerFactory = null;
         private readonly HttpRequestContextHandlerFactory _requestContextHandlerFactory = null;
         private readonly Func<HttpListenerRequest, string> _contentHandler = null;
@@ -42,6 +44,7 @@ namespace CompuMaster.Web.TinyWebServerAdvanced
         private void ListenerStart()
         {
             _listener.Start();
+#if NET_FRAMEWORK
             var httpsIpPorts = new System.Collections.Generic.List<string>();
             foreach (string prefix in _listener.Prefixes)
             {
@@ -52,7 +55,9 @@ namespace CompuMaster.Web.TinyWebServerAdvanced
                     httpsIpPorts.Add(ipPort);
                 }
             }
-            _tempSslCertificate = new CompuMaster.Web.TinyWebServerAdvanced.TemporaryBoundSslCertificate(httpsIpPorts.ToArray());
+            if (httpsIpPorts.Count != 0)
+                _tempSslCertificate = new CompuMaster.Web.TinyWebServerAdvanced.TemporaryBoundSslCertificate(httpsIpPorts.ToArray());
+#endif
         }
 
         public WebServer(Func<HttpListenerRequest, string> handler, params string[] urls)
