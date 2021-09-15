@@ -62,6 +62,7 @@
 	</PropertyGroup>
 	<PropertyGroup>
 		<OptionStrict>Off</OptionStrict>
+		<PackageIconUrl />
 	</PropertyGroup>
   <PropertyGroup Condition="'$(TargetFramework)' == 'net48'">
     <DefineConstants>NET_FRAMEWORK</DefineConstants>
@@ -82,5 +83,11 @@
 		<Reference Include="Microsoft.CSharp" />
 		<Reference Include="System.Net.Http" />
 		<Reference Include="System.Security.Cryptography.X509Certificates" />
+	</ItemGroup>
+	<ItemGroup>
+	  <None Include="..\logo_64x64.png">
+	    <Pack>True</Pack>
+	    <PackagePath></PackagePath>
+	  </None>
 	</ItemGroup>
 </Project>
