@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading;
@@ -27,7 +28,14 @@ namespace CompuMaster.Web.TinyWebServerAdvanced
         private readonly HttpRequestContextHandlerFactory _requestContextHandlerFactory = null;
         private readonly Func<HttpListenerRequest, string> _contentHandler = null;
         private readonly Func<HttpListenerRequest, System.Collections.Specialized.NameValueCollection> _responseHeadersHandler;
-        private bool _disposed = true;
+
+        private bool _disposed 
+        { 
+            get
+            {
+                return _listener == null;
+            } 
+        }
 
         private void ListenerSetup(string[] urls)
         {
@@ -64,31 +72,25 @@ namespace CompuMaster.Web.TinyWebServerAdvanced
         {
             if (handler == null)
                 throw new ArgumentException("method");
-            this.ListenerSetup(urls);
-
+            _urlsToListen = urls;
             _contentHandler = handler;
-            this.ListenerStart();
         }
 
         public WebServer(Func<HttpListenerRequest, string> contentHandler, Func<HttpListenerRequest, System.Collections.Specialized.NameValueCollection> responseHeadersHandler, params string[] urls)
         {
             if (contentHandler == null)
                 throw new ArgumentException("method");
-            this.ListenerSetup(urls);
-
+            _urlsToListen = urls;
             _contentHandler = contentHandler;
             _responseHeadersHandler = responseHeadersHandler;
-            this.ListenerStart();
         }
 
         public WebServer(HttpRequestHandlerFactory requestHandlerFactory,  params string[] urls)
         {
             if (requestHandlerFactory == null)
                 throw new ArgumentException("method");
-            this.ListenerSetup(urls);
-
+            _urlsToListen = urls;
             _requestHandlerFactory = requestHandlerFactory;
-            this.ListenerStart();
         }
 
 
@@ -96,16 +98,19 @@ namespace CompuMaster.Web.TinyWebServerAdvanced
         {
             if (requestContextHandlerFactory == null)
                 throw new ArgumentException("method");
-            this.ListenerSetup(urls);
-
+            _urlsToListen = urls;
             _requestContextHandlerFactory = requestContextHandlerFactory;
-            this.ListenerStart();
         }
 
-        public HttpListenerPrefixCollection Prefixes()
+        public string[] Prefixes()
         {
-            return _listener.Prefixes;
+            if (_listener == null)
+                return _urlsToListen;
+            else
+                return _listener.Prefixes.ToArray();
         }
+
+        private string[] _urlsToListen { get; set; }
 
         string[] UrlsWithStarExploded(string[] urls)
         {
@@ -158,12 +163,14 @@ namespace CompuMaster.Web.TinyWebServerAdvanced
 
         public void Run()
         {
-            if (!_disposed)
+            if (!_disposed && this._listener.IsListening)
             {
                 throw new Exception("Webserver already running");
             }
             else
             {
+                this.ListenerSetup(_urlsToListen);
+                this.ListenerStart();
                 ThreadPool.QueueUserWorkItem(o =>
                 {
                     while (_listener.IsListening)
@@ -220,7 +227,6 @@ namespace CompuMaster.Web.TinyWebServerAdvanced
                 _listener.Stop();
                 _listener.Close();
                 _listener = null;
-                _disposed = true;
             }
         }
 
